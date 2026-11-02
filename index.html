@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Archi Gupta: BCA student and aspiring backend and Java developer. Projects, skills, experience and contact details.">
+  <title>Archi Gupta | Backend &amp; Java Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Apply saved theme before paint to avoid a flash
+    (function () {
+      try {
+        var saved = localStorage.getItem("theme");
+        var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Archi Gupta, home">Archi<span>.</span></a>
+
+      <nav class="nav" aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark theme">
+        <span class="icon-sun" aria-hidden="true">☀️</span>
+        <span class="icon-moon" aria-hidden="true">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+
+    <!-- HERO -->
+    <section id="home" class="hero container">
+      <div class="hero-text">
+        <p class="eyebrow">Hello, I'm Archi Gupta</p>
+        <h1>Backend &amp; <span class="gradient-text">Java Developer</span> in the making.</h1>
+        <p class="lead">BCA student focused on backend development and software engineering. I build
+          scalable applications and solve real-world problems with Java, OOP, DSA and SQL.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View my work</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <figure class="hero-figure">
+        <div class="avatar">
+          <span class="avatar-initials" aria-hidden="true">AG</span>
+          <!-- Save your photo as photo.jpg in the same folder as this file -->
+          <img src="photo.jpg" alt="Portrait of Archi Gupta" width="400" height="400"
+               onerror="this.style.display='none'">
+        </div>
+        <figcaption>Ranchi, India &bull; Open to internships</figcaption>
+      </figure>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section container">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <article class="card">
+          <h3>Who I am</h3>
+          <p>I'm a Bachelor of Computer Applications student at Sarala Birla University (2024 &ndash; 2027)
+            with hands-on knowledge of Java, Data Structures &amp; Algorithms, Object-Oriented Programming
+            and SQL.</p>
+        </article>
+        <article class="card">
+          <h3>What I do</h3>
+          <p>I build Java applications using core OOP principles, and I also design clean interfaces in
+            Figma, so I care about both how software works and how it feels to use.</p>
+        </article>
+        <aside class="card stats" aria-label="Quick facts">
+          <dl>
+            <div><dt>Internships</dt><dd>2</dd></div>
+            <div><dt>Projects</dt><dd>3+</dd></div>
+            <div><dt>Certificates</dt><dd>4</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section container">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skill-groups">
+        <article class="card">
+          <h3>Languages</h3>
+          <ul class="skills"><li>C</li><li>C++</li><li>Python</li><li>Java</li></ul>
+        </article>
+        <article class="card">
+          <h3>Core Concepts</h3>
+          <ul class="skills"><li>Data Structures &amp; Algorithms</li><li>OOP</li><li>Problem Solving</li></ul>
+        </article>
+        <article class="card">
+          <h3>Database</h3>
+          <ul class="skills"><li>SQL</li><li>MySQL</li></ul>
+        </article>
+        <article class="card">
+          <h3>Web Technologies</h3>
+          <ul class="skills"><li>HTML5</li><li>CSS3</li><li>JavaScript</li></ul>
+        </article>
+        <article class="card">
+          <h3>Tools</h3>
+          <ul class="skills"><li>Git</li><li>GitHub</li><li>IntelliJ IDEA</li><li>VS Code</li></ul>
+        </article>
+        <article class="card">
+          <h3>UI/UX</h3>
+          <ul class="skills"><li>Figma</li><li>Canva</li><li>Wireframing</li><li>Prototyping</li><li>Design Thinking</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="section container">
+      <h2 class="section-title">Experience</h2>
+      <ol class="timeline">
+        <li class="timeline-item card">
+          <header class="timeline-head">
+            <h3>Java Programming Intern</h3>
+            <p class="meta">CodeAlpha &bull; <time datetime="2026-07">Jul 2026</time> &ndash; <time datetime="2026-08">Aug 2026</time></p>
+          </header>
+          <p>Completed 3 assigned tasks: a Student Grade Tracker (console and GUI), a Hotel Reservation
+            System and a Stock Trading Platform, all built with Core Java and OOP principles.</p>
+        </li>
+        <li class="timeline-item card">
+          <header class="timeline-head">
+            <h3>UI/UX Design Intern</h3>
+            <p class="meta">InternAlpha &bull; <time datetime="2026-05">May 2026</time> &ndash; <time datetime="2026-06">Jun 2026</time></p>
+          </header>
+          <p>Designed Login and Sign-Up pages in Figma, created layouts for mobile applications and
+            applied design thinking to build intuitive user interfaces.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+        <article class="card project">
+          <div class="project-thumb thumb-1" aria-hidden="true"></div>
+          <h3>Student Grade Tracker</h3>
+          <p>Java app to input and manage student grades. Calculates average, highest and lowest
+            scores with a summary report, built in both console and GUI versions.</p>
+          <ul class="tags"><li>Java</li><li>Arrays</li><li>ArrayList</li></ul>
+          <a class="link" href="https://github.com/archijsp05-ship-it" rel="noopener" aria-label="View Student Grade Tracker on GitHub">View on GitHub →</a>
+        </article>
+
+        <article class="card project">
+          <div class="project-thumb thumb-2" aria-hidden="true"></div>
+          <h3>Hotel Reservation System</h3>
+          <p>Java-based application to manage hotel room bookings, check-in/check-out and room
+            availability, built with Core Java and OOP principles.</p>
+          <ul class="tags"><li>Java</li><li>OOP</li></ul>
+          <a class="link" href="https://github.com/archijsp05-ship-it" rel="noopener" aria-label="View Hotel Reservation System on GitHub">View on GitHub →</a>
+        </article>
+
+        <article class="card project">
+          <div class="project-thumb thumb-3" aria-hidden="true"></div>
+          <h3>Library Management System</h3>
+          <p>Book issue, return and search functionality developed with an object-oriented
+            structure.</p>
+          <ul class="tags"><li>Java</li><li>OOP</li></ul>
+          <a class="link" href="https://github.com/archijsp05-ship-it" rel="noopener" aria-label="View Library Management System on GitHub">View on GitHub →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- EDUCATION, CERTIFICATIONS, ACHIEVEMENTS -->
+    <section id="education" class="section container">
+      <h2 class="section-title">Education &amp; Achievements</h2>
+      <div class="edu-grid">
+        <article class="card">
+          <h3>Education</h3>
+          <ul class="plain-list">
+            <li><strong>BCA</strong>, Sarala Birla University <span class="meta">2024 &ndash; 2027</span></li>
+            <li><strong>Class XII</strong>, PM Shri Kendriya Vidyalaya Jashpur (CBSE) <span class="meta">2024 &bull; 61%</span></li>
+            <li><strong>Class X</strong>, PM Shri Kendriya Vidyalaya Jashpur (CBSE) <span class="meta">2022 &bull; 77%</span></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Certifications</h3>
+          <ul class="plain-list">
+            <li>AI Fluency: Framework &amp; Foundation <span class="meta">Anthropic</span></li>
+            <li>AI Tools &amp; ChatGPT Workshop <span class="meta">be10x</span></li>
+            <li>Back-End APIs <span class="meta">IBM SkillsBuild</span></li>
+            <li>OOPs in Java <span class="meta">Simplilearn</span></li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Achievements</h3>
+          <ul class="plain-list">
+            <li>🏆 Third Prize in the GreenGenius Competition at TechPragati</li>
+            <li>Actively building skills in Java, DSA, SQL and backend development</li>
+          </ul>
+          <h3 class="spaced">Languages</h3>
+          <ul class="skills"><li>English</li><li>Hindi</li></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-grid">
+        <div class="card">
+          <h3>Let's work together</h3>
+          <p>Looking for an intern or junior developer for a backend or Java project? Send me a
+            message and I'll get back to you soon.</p>
+          <address>
+            📍 Ranchi, India<br>
+            ✉️ <a href="mailto:archijsp05@email.com">archijsp05@email.com</a><br>
+            💼 <a href="https://linkedin.com/in/archi-gupta-035930335" rel="noopener">linkedin.com/in/archi-gupta-035930335</a><br>
+            💻 <a href="https://github.com/archijsp05-ship-it" rel="noopener">github.com/archijsp05-ship-it</a>
+          </address>
+        </div>
+
+        <form class="card form" action="mailto:archijsp05@email.com" method="post" enctype="text/plain">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell me about your project" required></textarea>
+
+          <button class="btn btn-primary" type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 Archi Gupta. All rights reserved.</p>
+      <p>Built with HTML5 &amp; CSS3</p>
+    </div>
+  </footer>
+
+  <script>
+    var toggle = document.getElementById("themeToggle");
+    toggle.addEventListener("click", function () {
+      var root = document.documentElement;
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
