@@ -27,7 +27,6 @@ This portfolio presents my technical skills, development projects, internship ex
 portfolio-2/
 ├── index.html
 ├── style.css
-├── photo.jpg
 └── README.md
 ```
 
