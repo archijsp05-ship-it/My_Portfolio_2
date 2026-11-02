@@ -1,0 +1,461 @@
+/* ==========================================================
+   Advanced CSS3 & Responsive Architecture
+   - CSS custom properties for light/dark theming
+   - Mobile-first media queries (base = mobile)
+   - CSS Grid for page/section layouts
+   - Flexbox for component alignment
+   ========================================================== */
+
+/* ---------- 1. Design tokens (light theme default) ---------- */
+:root {
+  --bg: #f7f8fc;
+  --surface: #ffffff;
+  --surface-alt: #eef1fb;
+  --text: #1b1f33;
+  --text-muted: #5a6180;
+  --border: #e1e5f2;
+  --primary: #4f46e5;
+  --primary-contrast: #ffffff;
+  --accent: #06b6d4;
+  --shadow: 0 8px 24px rgba(31, 41, 90, 0.08);
+
+  --radius: 16px;
+  --font: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --container: 1120px;
+  --gutter: 1.25rem;
+  --transition: 0.25s ease;
+}
+
+/* ---------- 2. Dark theme overrides ---------- */
+:root[data-theme="dark"] {
+  --bg: #0e1020;
+  --surface: #171a30;
+  --surface-alt: #1f2340;
+  --text: #eceefb;
+  --text-muted: #a2a8c9;
+  --border: #2a2f52;
+  --primary: #818cf8;
+  --primary-contrast: #0e1020;
+  --accent: #22d3ee;
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- 3. Reset & base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  transition: background var(--transition), color var(--transition);
+}
+
+img, svg { max-width: 100%; display: block; }
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul { margin: 0; padding: 0; list-style: none; }
+h1, h2, h3, p { margin-top: 0; }
+
+h1 { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.15; margin-bottom: 1rem; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.25rem); }
+h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: var(--primary);
+  color: var(--primary-contrast);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  z-index: 100;
+}
+.skip-link:focus { top: 1rem; }
+
+/* ---------- 4. Header (Flexbox) ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding-block: 0.75rem;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.brand span { color: var(--primary); }
+.brand:hover { text-decoration: none; }
+
+/* Mobile: nav drops to its own row beneath */
+.nav { order: 3; width: 100%; }
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem;
+}
+
+.nav-list a {
+  display: block;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: background var(--transition), color var(--transition);
+}
+.nav-list a:hover {
+  background: var(--surface-alt);
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: transform var(--transition), background var(--transition);
+}
+.theme-toggle:hover { transform: rotate(15deg) scale(1.05); }
+
+/* Show the right icon for the active theme */
+.icon-moon { display: none; }
+:root[data-theme="dark"] .icon-sun { display: none; }
+:root[data-theme="dark"] .icon-moon { display: inline; }
+
+/* ---------- 5. Page layout (CSS Grid) ---------- */
+.page {
+  display: grid;
+  gap: 3.5rem;
+  padding-block: 2rem 4rem;
+}
+
+.section-title {
+  position: relative;
+  margin-bottom: 1.75rem;
+}
+.section-title::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 0.5rem;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+/* ---------- 6. Hero (Grid) ---------- */
+.hero {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  padding-block: 1rem;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  background: var(--surface-alt);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.lead { color: var(--text-muted); font-size: 1.1rem; max-width: 52ch; }
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+
+.hero-figure { margin: 0; justify-self: center; text-align: center; }
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: clamp(160px, 45vw, 260px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: var(--shadow);
+}
+.hero-figure figcaption { margin-top: 0.75rem; color: var(--text-muted); font-size: 0.9rem; }
+
+/* ---------- 7. Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.btn:hover { transform: translateY(-2px); text-decoration: none; box-shadow: var(--shadow); }
+.btn-primary { background: var(--primary); color: var(--primary-contrast); }
+.btn-ghost { border-color: var(--border); color: var(--text); background: var(--surface); }
+
+/* ---------- 8. Cards ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), border-color var(--transition);
+}
+.card p:last-child { margin-bottom: 0; }
+.card p { color: var(--text-muted); }
+
+/* ---------- 9. About (Grid) ---------- */
+.about-grid { display: grid; gap: 1.25rem; }
+
+.stats dl {
+  display: flex;               /* Flexbox inside a grid item */
+  justify-content: space-around;
+  gap: 1rem;
+  margin: 0;
+  text-align: center;
+}
+.stats dt { color: var(--text-muted); font-size: 0.9rem; }
+.stats dd { margin: 0; font-size: 2rem; font-weight: 700; color: var(--primary); }
+
+/* ---------- 10. Skills (Flexbox) ---------- */
+.skills { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.skills li {
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-weight: 500;
+  transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+.skills li:hover { background: var(--primary); color: var(--primary-contrast); transform: translateY(-2px); }
+
+/* ---------- 11. Projects (Grid) ---------- */
+.projects-grid { display: grid; gap: 1.5rem; }
+
+.project { display: flex; flex-direction: column; }   /* Flexbox keeps links bottom-aligned */
+.project:hover { transform: translateY(-6px); border-color: var(--primary); }
+.project .link { margin-top: auto; font-weight: 600; }
+
+.project-thumb {
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+.thumb-1 { background: linear-gradient(135deg, #f472b6, #fb923c); }
+.thumb-2 { background: linear-gradient(135deg, #6366f1, #06b6d4); }
+.thumb-3 { background: linear-gradient(135deg, #10b981, #84cc16); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0 1rem; }
+.tags li {
+  padding: 0.15rem 0.7rem;
+  border-radius: 6px;
+  background: var(--surface-alt);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ---------- 12. Contact (Grid) ---------- */
+.contact-grid { display: grid; gap: 1.25rem; }
+address { font-style: normal; line-height: 2; }
+
+.form { display: grid; gap: 0.5rem; }
+.form label { font-weight: 600; font-size: 0.9rem; }
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  margin-bottom: 0.5rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.form input:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+/* ---------- 12b. Photo avatar ---------- */
+.avatar { position: relative; overflow: hidden; border: 4px solid var(--surface); }
+.avatar img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ---------- 12c. Skill groups (Grid) ---------- */
+.skill-groups { display: grid; gap: 1.25rem; }
+.skill-groups .skills li { font-size: 0.9rem; padding: 0.4rem 0.9rem; }
+
+/* ---------- 12d. Experience timeline (Flexbox + Grid) ---------- */
+.timeline { display: grid; gap: 1.25rem; position: relative; padding-left: 1.25rem; }
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(var(--primary), var(--accent));
+}
+.timeline-item { position: relative; }
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.25rem - 6px + 1.5px);
+  top: 1.75rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid var(--bg);
+}
+.timeline-head { display: flex; flex-direction: column; gap: 0.15rem; margin-bottom: 0.5rem; }
+.timeline-head h3 { margin: 0; }
+.meta { color: var(--text-muted); font-size: 0.9rem; }
+.timeline-head .meta { margin: 0; }
+
+/* ---------- 12e. Education / certifications ---------- */
+.edu-grid { display: grid; gap: 1.25rem; }
+.plain-list { display: grid; gap: 0.9rem; }
+.plain-list li { display: flex; flex-direction: column; gap: 0.1rem; color: var(--text); }
+.plain-list strong { color: var(--primary); }
+.card h3.spaced { margin-top: 1.5rem; }
+
+@media (min-width: 640px) {
+  .skill-groups { grid-template-columns: repeat(2, 1fr); }
+  .timeline-head { flex-direction: row; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+}
+
+@media (min-width: 1024px) {
+  .skill-groups { grid-template-columns: repeat(3, 1fr); }
+  .edu-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---------- 13. Footer (Flexbox) ---------- */
+.site-footer { border-top: 1px solid var(--border); background: var(--surface); }
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding-block: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+.footer-inner p { margin: 0; }
+
+/* ==========================================================
+   MOBILE-FIRST BREAKPOINTS (min-width, scaling up)
+   ========================================================== */
+
+/* Tablet: 640px+ */
+@media (min-width: 640px) {
+  :root { --gutter: 2rem; }
+
+  .about-grid { grid-template-columns: repeat(2, 1fr); }
+  .about-grid .stats { grid-column: 1 / -1; }
+
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .footer-inner { flex-direction: row; justify-content: space-between; }
+}
+
+/* Tablet landscape / small desktop: 768px+ */
+@media (min-width: 768px) {
+  .nav { order: 0; width: auto; }
+  .nav-list { gap: 0.5rem; }
+  .nav-list a { font-size: 1rem; padding-inline: 1rem; }
+
+  .header-inner { flex-wrap: nowrap; }
+
+  .hero { grid-template-columns: 1.4fr 1fr; gap: 3rem; padding-block: 3rem; }
+
+  .contact-grid { grid-template-columns: 1fr 1.2fr; }
+}
+
+/* Desktop: 1024px+ */
+@media (min-width: 1024px) {
+  .page { gap: 6rem; padding-block: 3rem 6rem; }
+
+  .about-grid { grid-template-columns: 1fr 1fr 0.8fr; }
+  .about-grid .stats { grid-column: auto; }
+  .stats dl { flex-direction: column; justify-content: center; height: 100%; }
+
+  .projects-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Large screens: 1440px+ */
+@media (min-width: 1440px) {
+  :root { --container: 1280px; }
+  body { font-size: 1.0625rem; }
+}
+
+/* ---------- Accessibility: respect reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
